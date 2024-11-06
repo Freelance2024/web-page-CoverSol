@@ -10,13 +10,11 @@
         }, 1);
     };
     spinner();
-    
-    
-    // Initiate the wowjs
+
+    // Inicia wow.js
     new WOW().init();
 
-
-    // Sticky Navbar
+    // Navbar fija
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.sticky-top').addClass('shadow-sm').css('top', '0px');
@@ -24,9 +22,8 @@
             $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
         }
     });
-    
-    
-    // Back to top button
+
+    // Botón "volver arriba"
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.back-to-top').fadeIn('slow');
@@ -39,8 +36,7 @@
         return false;
     });
 
-
-    // Modal Video
+    // Video modal
     var $videoSrc;
     $('.btn-play').click(function () {
         $videoSrc = $(this).data("src");
@@ -53,15 +49,13 @@
         $("#video").attr('src', $videoSrc);
     })
 
-
-    // Facts counter
+    // Contador de hechos
     $('[data-toggle="counter-up"]').counterUp({
         delay: 10,
         time: 2000
     });
 
-
-    // Project carousel
+    // Carrusel de proyectos
     $(".project-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
@@ -92,8 +86,7 @@
         }
     });
 
-
-    // Testimonials carousel
+    // Carrusel de testimonios
     $(".testimonial-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
@@ -115,6 +108,89 @@
         }
     });
 
-    
-})(jQuery);
+    // -------------------------------
+    // Código para generar la galería
+    // -------------------------------
 
+    // Arreglo de imágenes
+    const galleryImages = [
+        { src: "img/images/1.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/2.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/3.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/4.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/5.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/6.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/7.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/8.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/9.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/10.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/11.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/12.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/13.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/14.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/15.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/16.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/17.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/18.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/19.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/20.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/21.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/22.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/23.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/24.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/25.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/26.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/27.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/28.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/29.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/30.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/31.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/32.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/33.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/34.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/35.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/36.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/37.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/38.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/39.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/40.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/41.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/42.jpeg", title: "Escalera", subtitle: "Coversol" },
+        { src: "img/images/43.jpeg", title: "Escalera", subtitle: "Coversol" },
+    ];
+
+
+    // Función para generar la galería
+    function generateGallery() {
+        const container = document.getElementById('gallery-container');
+        let htmlContent = '';
+
+        galleryImages.forEach((image, index) => {
+            const delay = (0.1 * (index % 3)).toFixed(1) + 's';
+            htmlContent += `
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="${delay}">
+                    <div class="team-item">
+                        <img class="img-fluid" src="${image.src}" alt="${image.title}">
+                        <div class="d-flex">
+                            <div class="position-relative overflow-hidden bg-light d-flex flex-column justify-content-center w-100 ps-4" style="height: 90px;">
+                                <h5>${image.title}</h5>
+                                <span class="text-primary">${image.subtitle}</span>
+                                <div class="team-social" style="justify-content: center">
+                                    <a href="" class="btn btn-secondary py-3 px-5 animated slideInRight">Consultar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = htmlContent;
+    }
+
+    // Llamamos a la función cuando el DOM esté listo
+    $(document).ready(function() {
+        generateGallery();
+    });
+
+})(jQuery);
